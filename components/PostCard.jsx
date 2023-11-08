@@ -30,14 +30,20 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '80%',
         aspectRatio: 1,
+        borderWidth: 2,
+        borderColor: '#877BAE',
+        borderRadius: '5%',
       },
     cardContainer: {
-        marginVertical: 10,
-    
+        backgroundColor: '#B59DFA',
+        borderWidth: 1,
+        borderColor: '#877BAE',
+        
       },
       posterInfo: {
         flexDirection: 'row',
-        backgroundColor: '#0021f3'
+        backgroundColor: '#B59DFA',
+        alignItems: 'stretch'
       },
       avatar: {
         flex: 1,
@@ -51,10 +57,13 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 15,
         color: '#FAF9F6',
+        padding: 5,
+        alignItems: 'flex-start'
       },
       displayName: {
         fontSize: 10,
         color: '#d3d3d3',
+        padding: 5,
       },
       postContainer: {
         borderWidth: 1,
@@ -66,8 +75,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '600',
         fontSize: 30,
+        backgroundColor: '#DBBFDB'
       },
       postContent: {
-        textAlign: 'center',
+        backgroundColor: '#DBBFDB',
+        padding: 20,
+        alignItems: 'center',
       }
 })
