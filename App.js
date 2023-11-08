@@ -5,18 +5,17 @@ import { StyleSheet, Text, View, Button, Image, ScrollView, SafeAreaView } from 
 export default function App() {
   const [blogPosts, setBlogPosts] = useState([]) //data comes in as an array of objects
 
-  const handleFetchData = () => {
-    fetch('http://192.168.10.165:8080/home')
+useEffect(() => {
+  fetch('http://192.168.10.165:8080/home')
       .then(res => res.json())
       .then(data => setBlogPosts(data))
       .catch(err => console.error(err))
-  }
+}, [])
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Hey class!</Text>
+      <Text style={styles.header}>Jo's Gram</Text>
       <StatusBar style="auto" />
-      <Button title='get some data' onPress={handleFetchData} />
       <ScrollView>
       {blogPosts.map((post, index) => {
         return (
@@ -29,7 +28,7 @@ export default function App() {
       })}
       </ScrollView>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -40,4 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: '20%vw',
   },
+  header:{
+    fontSize: 50,
+  }
 });
