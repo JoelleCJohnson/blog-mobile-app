@@ -1,12 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Button, Image, ScrollView, SafeAreaView } from 'react-native';
 
 export default function App() {
+  const [blogPosts, setBlogPosts] = useState([]) //data comes in as an array of objects
+
+  const handleFetchData = () => {
+    fetch('http://192.168.10.165:8080/home')
+      .then(res => res.json())
+      .then(data => setBlogPosts(data))
+      .catch(err => console.error(err))
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <SafeAreaView style={styles.container}>
+      <Text>Hey class!</Text>
       <StatusBar style="auto" />
-    </View>
+      <Button title='get some data' onPress={handleFetchData} />
+      <ScrollView>
+      {blogPosts.map((post, index) => {
+        return (
+          <View key={post._id}>
+            <Image source={{ uri: `https://source.unsplash.com/random/${index}`}} width={200} height={100}/>
+            <Text>{post.title}</Text>
+            {/* <Text>{post.content}</Text> */}
+          </View>
+        )
+      })}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -16,5 +38,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: '20%vw',
   },
 });
